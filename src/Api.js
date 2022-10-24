@@ -2,12 +2,11 @@ import axios from 'axios';
 import Notiflix from 'notiflix';
 
 const API_KEY = '6b9a3fed645205c8f486b0eeae6f2de6';
-const url = 'https://api.themoviedb.org/3';
 
 export const getPopularMovies = async () => {
   try {
     const responce = await axios.get(
-      `${url}/trending/movie/week?api_key=${API_KEY}`
+      `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`
     );
     console.log(responce.data);
     return responce.data;
@@ -20,7 +19,7 @@ export const getPopularMovies = async () => {
 export const getSearchMovies = async query => {
   try {
     const responce = await axios.get(
-      `${url}/search/${query}?api_key=${API_KEY}`
+      `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`
     );
     console.log(responce.data);
     return responce.data;
@@ -30,10 +29,10 @@ export const getSearchMovies = async query => {
   }
 };
 
-export const getMovieDetails = async movieId => {
+export const getMovieDetails = async id => {
   try {
     const responce = await axios.get(
-      `${url}/movie/${movieId}?api_key=${API_KEY}`
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
     );
     console.log(responce.data);
     return responce.data;
@@ -43,10 +42,10 @@ export const getMovieDetails = async movieId => {
   }
 };
 
-export const getMovieCredit = async creditId => {
+export const getMovieCredit = async id => {
   try {
     const responce = await axios.get(
-      `${url}/credit/${creditId}?api_key=${API_KEY}`
+      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US`
     );
     console.log(responce.data);
     return responce.data;
@@ -56,10 +55,10 @@ export const getMovieCredit = async creditId => {
   }
 };
 
-export const getMovieReview = async reviewId => {
+export const getMovieReview = async id => {
   try {
     const responce = await axios.get(
-      `${url}/review/${reviewId}?api_key=${API_KEY}`
+      `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${API_KEY}&language=en-US`
     );
     console.log(responce.data);
     return responce.data;
